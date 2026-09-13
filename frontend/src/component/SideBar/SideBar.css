@@ -1,0 +1,270 @@
+.sidebar {
+  display: flex;
+  flex: 0 0 240px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
+  height: 100vh;
+  padding: 20px 12px 16px;
+  overflow: hidden;
+  background: var(--sidebar-background);
+  border-right: 1px solid var(--border-subtle);
+  transition: width 180ms ease, flex-basis 180ms ease, padding 180ms ease;
+  animation: sidebar-reveal 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.top_side_bar {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 4px;
+}
+
+.brand_logo {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  background: transparent;
+  border: 1px solid var(--text-primary);
+  border-radius: 6px;
+}
+
+.brand_copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.brand_name {
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.brand_label {
+  color: var(--text-secondary);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+.wrap_side_bar {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.side_navigation,
+.bottom_side_bar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.side_navigation::before {
+  margin: 0 10px 10px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  content: "MENU";
+}
+
+.side_navigation a,
+.bottom_side_bar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 550;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  animation: navigation-reveal 300ms ease-out both;
+}
+
+.side_navigation a:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.side_navigation a:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.side_navigation a:nth-child(4) {
+  animation-delay: 120ms;
+}
+
+.side_navigation a:nth-child(5) {
+  animation-delay: 160ms;
+}
+
+.side_navigation a:nth-child(6) {
+  animation-delay: 200ms;
+}
+
+.bottom_side_bar a {
+  animation-delay: 240ms;
+}
+
+.side_navigation a svg,
+.bottom_side_bar a svg {
+  flex: 0 0 20px;
+}
+
+.side_navigation a.active,
+.bottom_side_bar a.active {
+  color: var(--text-on-light);
+  font-weight: 700;
+  background: var(--surface-active);
+}
+
+.bottom_side_bar {
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wrap_side_bar:hover {
+    color: var(--text-primary);
+    background: var(--surface-hover);
+    border-color: var(--border-subtle);
+  }
+
+  .side_navigation a:not(.active):hover,
+  .bottom_side_bar a:not(.active):hover {
+    color: var(--text-primary);
+    background: var(--surface-hover);
+  }
+
+  .side_navigation a.active:hover,
+  .bottom_side_bar a.active:hover {
+    background: #ffffff;
+  }
+}
+
+.side_navigation a:focus-visible,
+.bottom_side_bar a:focus-visible,
+.wrap_side_bar:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.sidebar--collapsed {
+  flex-basis: 68px;
+  width: 68px;
+  padding-inline: 9px;
+}
+
+.sidebar--collapsed .brand,
+.sidebar--collapsed .side_navigation a,
+.sidebar--collapsed .bottom_side_bar a {
+  justify-content: center;
+}
+
+.sidebar--collapsed .brand_logo {
+  display: none;
+}
+
+.sidebar--collapsed .brand_copy {
+  display: none;
+}
+
+.sidebar--collapsed .side_navigation::before {
+  display: none;
+}
+
+.sidebar--collapsed .side_navigation a,
+.sidebar--collapsed .bottom_side_bar a {
+  padding: 0;
+}
+
+@keyframes sidebar-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes navigation-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .side_navigation a,
+  .bottom_side_bar a,
+  .wrap_side_bar {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .sidebar {
+    flex-basis: 68px;
+    width: 68px;
+    padding-inline: 9px;
+  }
+
+  .sidebar .brand,
+  .sidebar .side_navigation a,
+  .sidebar .bottom_side_bar a {
+    justify-content: center;
+  }
+
+  .sidebar .brand_logo,
+  .sidebar .brand_copy,
+  .sidebar .side_navigation::before,
+  .sidebar .side_navigation a span,
+  .sidebar .bottom_side_bar a span {
+    display: none;
+  }
+
+  .sidebar .side_navigation a,
+  .sidebar .bottom_side_bar a {
+    padding: 0;
+  }
+}
