@@ -13,6 +13,9 @@
   overflow: auto;
   background: var(--app-background);
   scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .MainLayout::-webkit-scrollbar {
